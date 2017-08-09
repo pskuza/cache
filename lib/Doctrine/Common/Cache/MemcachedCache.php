@@ -102,6 +102,16 @@ class MemcachedCache extends CacheProvider
     /**
      * {@inheritdoc}
      */
+    protected function doIncrement($id, $count)
+    {
+        $this->memcached->increment($id, $count);
+
+        return $this->memcached->getResultCode() === Memcached::RES_SUCCESS;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function doSave($id, $data, $lifeTime = 0)
     {
         if ($lifeTime > 30 * 24 * 3600) {

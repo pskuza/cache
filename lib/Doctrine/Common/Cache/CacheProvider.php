@@ -128,6 +128,14 @@ abstract class CacheProvider implements Cache, FlushableCache, ClearableCache, M
     /**
      * {@inheritdoc}
      */
+    public function increment($id, $count)
+    {
+        return $this->doIncrement($this->getNamespacedId($id), $count);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function save($id, $data, $lifeTime = 0)
     {
         return $this->doSave($this->getNamespacedId($id), $data, $lifeTime);
